@@ -15,7 +15,7 @@ const costumeSchema = mongoose.Schema(
             required: true,
         },
         quantity: {
-            type: int,
+            type: String,
             required: true,
         },
     },
@@ -24,4 +24,4 @@ const costumeSchema = mongoose.Schema(
     },
 );
 
-export const Costume = mongoose.model('Cpstume', { name: String });
+export const Costume = mongoose.model('Costume', { name: String });

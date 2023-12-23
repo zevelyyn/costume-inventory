@@ -40,6 +40,7 @@ router.get('/', async (request, response) => {
             dance: costumes.length,
             data: costumes
         });
+        
     } catch (error) {
         console.log(error.message);
         response.status(500).send({ message: error.message });
