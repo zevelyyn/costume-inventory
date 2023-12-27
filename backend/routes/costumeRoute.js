@@ -10,20 +10,24 @@ router.post('/', async (request, response) => {
             !request.body.dance ||
             !request.body.color ||
             !request.body.location ||
-            !request.body.quantity
+            !request.body.quantity ||
+            !request.body.style
         ) {
             return response.status(400).send({
                 message: 'Send all required fields: dance, color, location, quantity',
             });
         }
         const newCostume = {
-            dance: request.body.title,
+            dance: request.body.dance,
+            style: request.body.style,
             color: request.body.color,
             location: request.body.location,
             quantity: request.body.quantity,
         };
 
         const costume = await Costume.create(newCostume);
+
+        return response.status(201).send(costume);
 
     } catch (error) {
         console.log(error.message);
@@ -37,7 +41,7 @@ router.get('/', async (request, response) => {
         const costumes = await Costume.find({});
 
         return response.status(200).json({
-            dance: costumes.length,
+            count: costumes.length,
             data: costumes
         });
         
@@ -55,7 +59,7 @@ router.get('/:id', async (request, response) => {
         const costumes = await Costume.findById(id);
 
         return response.status(200).json({
-            dance: costumes.length,
+            count: costumes.length,
             data: costumes
         });
 
@@ -71,10 +75,11 @@ router.put('/:id', async (request, response) => {
         if (!request.body.dance ||
             !request.body.color ||
             !request.body.location ||
-            !request.body.quantity
+            !request.body.quantity ||
+            !request.body.style
         ) {
             return response.status(400).send({
-                message: 'Send all required fields: dance, color, location, quantity',
+                message: 'Send all required fields: dance, style, color, location, quantity',
             });
         }
 
@@ -99,7 +104,7 @@ router.delete('/:id', async (request, response) => {
     try {
         const { id } = request.params;
 
-        const result = await Book.findByIdAndDelete(id);
+        const result = await Costume.findByIdAndDelete(id);
 
         if (!result) {
             return response.status(404).json({ message: 'Costume not found' });

@@ -15,7 +15,7 @@ const App = () => {
       <Route path='/costumes/edit/:id' element={<EditCostume />} />
       <Route path='/costumes/delete/:id' element={<DeleteCostume />} />
     </Routes>
-  )
-}
+  );
+};
 
-export default App
+export default App;

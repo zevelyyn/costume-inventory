@@ -6,6 +6,10 @@ const costumeSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+        style: {
+            type: String,
+            required: true,
+        },
         color: {
             type: String,
             required: true,
@@ -24,4 +28,4 @@ const costumeSchema = mongoose.Schema(
     },
 );
 
-export const Costume = mongoose.model('Costume', { name: String });
+export const Costume = mongoose.model('Costume', costumeSchema);
